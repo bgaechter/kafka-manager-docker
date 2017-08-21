@@ -9,8 +9,7 @@ ENV JAVA_MAJOR=8 \
 
 ENV JAVA_HOME=/opt/jdk1.${JAVA_MAJOR}.0_${JAVA_UPDATE} \
     ZK_HOSTS=localhost:2181 \
-    KM_VERSION=1.3.1.6 \
-    KM_REVISION=6cf43e383377a6b37df4faa04d9aff515a265b30 \
+    KM_VERSION=1.3.3.13 \
     KM_CONFIGFILE="conf/application.conf"
 
 RUN apk add --no-cache git wget && \
@@ -18,7 +17,7 @@ RUN apk add --no-cache git wget && \
     cd /tmp && \
     git clone https://github.com/yahoo/kafka-manager && \
     cd /tmp/kafka-manager && \
-    git checkout ${KM_REVISION} && \
+    git checkout ${KM_VERSION} && \
     echo 'scalacOptions ++= Seq("-Xmax-classfile-name", "200")' >> build.sbt && \
     ./sbt clean dist && \
     unzip  -d / ./target/universal/kafka-manager-${KM_VERSION}.zip && \
